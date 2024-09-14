@@ -16,6 +16,8 @@
 		p.setTelefone(request.getParameter("telefone"));
 		p.setEmail(request.getParameter("email"));
 		p.setCidade(request.getParameter("cidade"));
+		p.setEndereco(request.getParameter("endereco"));
+		p.setCep(request.getParameter("cep"));
 		
 		dao.inserir(p);
 	%>

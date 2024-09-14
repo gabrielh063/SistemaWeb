@@ -10,10 +10,13 @@
 </head>
 <body>
 	<table border="1">
+		<th>Id</th>
 		<th>Nome</th>
 		<th>Telefone</th>
 		<th>Email</th>
 		<th>Cidade</th>
+		<th>Endereco</th>
+		<th>CEP</th>
 		<% 
 			PessoaDAO dao = new PessoaDAO();
 			for(Pessoa p : dao.listar()){
@@ -22,6 +25,12 @@
 				out.print("<td>" + p.getTelefone() + "</td>");
 				out.print("<td>" + p.getEmail() + "</td>");
 				out.print("<td>" + p.getCidade() + "</td>");
+				out.print("<td>" + p.getEndereco() + "</td>");
+				out.print("<td>" + p.getCep() + "</td>");
+				out.print("<td>");
+				out.print("<a href='formulario.jsp?id="+ p.getIdPessoa()+ "'>Alterar</a>");
+				out.print("<a href='excluir.jsp?id="+ p.getIdPessoa()+ "'>Excluir</a>");
+				out.print("<td>");
 				out.print("<tr>");
 			}
 		
