@@ -51,5 +51,8 @@ public class Pessoa {
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
+	public String toString() {
+		return "";
+	}
 	
 }
