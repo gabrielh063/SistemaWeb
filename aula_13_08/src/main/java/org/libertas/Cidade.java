@@ -39,7 +39,7 @@ public class Cidade{
 	}
 	@Override
 	public String toString() {
-		return null;
+		return "";
 	}
 
 	
