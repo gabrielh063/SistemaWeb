@@ -16,7 +16,7 @@
 	<jsp:useBean id="cdao" scope="page" class="org.libertas.CidadeDAO"/>
 	<jsp:setProperty property="*" name="c"/>
 	
-	<% cdao.salvar(c); %>
+	${cdao.salvar(c)}
 	<div class="container mt-5">
     <div class="alert alert-success text-center" role="alert">
         Pessoa Cadastrada com Sucesso!

@@ -17,7 +17,7 @@ public class CidadeDAO {
 	
 	public void inserir(Cidade c) {
 //		lista.add(p);
-		ConexaoTrabalho conn = new ConexaoTrabalho();
+		Conexao conn = new Conexao();
 		
 		try {
 			String sql = "INSERT INTO cidades (nomeCidade, uf, cep, populacao)" + " VALUES (?, ?, ?, ?)";
@@ -35,9 +35,9 @@ public class CidadeDAO {
 	}
 	
 	public void alterar(Cidade c) {
-		ConexaoTrabalho conn = new ConexaoTrabalho();
+		Conexao conn = new Conexao();
 		try {
-			String sql = "UPDATE cidades SET" + "nomeCidade = ?, uf = ?, " + " cep = ?, populacao = ?";
+			String sql = "UPDATE cidades SET " + "nomeCidade = ?, uf = ?, " + " cep = ?, populacao = ? WHERE idCidade = " + c.getIdCidade();
 			PreparedStatement prep = conn.getConnection().prepareStatement(sql);
 			prep.setString(1, c.getNomeCidade());
 			prep.setString(2, c.getUf());
@@ -52,7 +52,7 @@ public class CidadeDAO {
 	}
 	
 	public void excluir(Cidade c) {
-		ConexaoTrabalho conn = new ConexaoTrabalho();
+		Conexao conn = new Conexao();
 		try {
 			String sql = "DELETE FROM cidades WHERE idCidade = ?";
 			PreparedStatement prep = conn.getConnection().prepareStatement(sql);
@@ -67,7 +67,7 @@ public class CidadeDAO {
 
 	public LinkedList<Cidade> listar() {
 		LinkedList<Cidade> lista = new LinkedList<Cidade>();
-		ConexaoTrabalho conn = new ConexaoTrabalho();
+		Conexao conn = new Conexao();
 		try {
 			String sql = "SELECT * FROM cidades";
 			Statement sta = conn.getConnection().createStatement();
@@ -75,6 +75,7 @@ public class CidadeDAO {
 			while (res.next()) {
 				Cidade c = new Cidade();
 				c.setIdCidade(res.getInt("idCidade"));
+				c.setNomeCidade(res.getString("nomeCidade"));
 				c.setUf(res.getString("uf"));
 				c.setCep(res.getString("cep"));
 				c.setPopulacao(res.getString("populacao"));
@@ -89,13 +90,14 @@ public class CidadeDAO {
 	}
 	public Cidade consultar(int id) {
 		Cidade c = new Cidade();
-		ConexaoTrabalho conn = new ConexaoTrabalho();
+		Conexao conn = new Conexao();
 		try {
 			String sql = "SELECT * FROM cidades WHERE idCidade = " + id;
 			Statement sta = conn.getConnection().createStatement();
 			ResultSet res = sta.executeQuery(sql);
 			if (res.next()) {
 				c.setIdCidade(res.getInt("idCidade"));
+				c.setNomeCidade(res.getString("nomeCidade"));		
 				c.setUf(res.getString("uf"));
 				c.setCep(res.getString("cep"));
 				c.setPopulacao(res.getString("populacao"));
@@ -103,6 +105,7 @@ public class CidadeDAO {
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
+			
 		}
 		conn.desconecta();
 		return c;

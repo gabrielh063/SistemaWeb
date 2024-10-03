@@ -18,7 +18,6 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nome da Cidade</th>
                 <th>Uf</th>
                 <th>CEP</th>
@@ -32,7 +31,6 @@
                 for(Cidade c : lista) {
             %>
                 <tr>
-                    <td><%= c.getIdCidade() %></td>
                     <td><%= c.getNomeCidade() %></td>
                     <td><%= c.getUf() %></td>
                     <td><%= c.getCep() %></td>

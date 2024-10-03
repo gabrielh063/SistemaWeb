@@ -116,9 +116,9 @@ public class PessoaDAO {
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
+			return p;
 		}
 		conn.desconecta();
-		return p;
 	}
 
 }

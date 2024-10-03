@@ -19,28 +19,28 @@
         <div class="mb-3 d-flex justify-content-center">
             <div>
                 <label for="nome" class="form-label">Nome da Cidade</label>
-                <input type="text" class="form-control" id="nome" required style="width: 100%; max-width: 800px;">
+                <input type="text" class="form-control" id="nome" name="nomeCidade" required style="width: 100%; max-width: 800px;">
             </div>
         </div>
 
         <div class="mb-3 d-flex justify-content-center">
             <div>
                 <label for="uf" class="form-label">UF</label>
-                <input type="uf" class="form-control" id="uf" required style="width: 100%; max-width: 800px;">
+                <input type="uf" class="form-control" id="uf" name="uf" required style="width: 100%; max-width: 800px;">
             </div>
         </div>
 
         <div class="mb-3 d-flex justify-content-center">
             <div>
                 <label for="cep" class="form-label">CEP</label>
-                <input type="text" class="form-control" id="cep" required style="width: 100%; max-width: 800px;">
+                <input type="text" class="form-control" id="cep" name="cep" required style="width: 100%; max-width: 800px;">
             </div>
         </div>
         
 		<div class="mb-3 d-flex justify-content-center">
             <div>
                 <label for="porpulacao" class="form-label">Populacao</label>
-                <input type="text" class="form-control" id="populacao" required style="width: 100%; max-width: 800px;">
+                <input type="text" class="form-control" id="populacao" name="populacao" required style="width: 100%; max-width: 800px;">
             </div>
         </div>
 		
