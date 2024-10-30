@@ -18,5 +18,6 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/jakarta.servlet.jsp.jstl-api-2.0.0.jar"/>
 	<classpathentry kind="lib" path="/home/gabriel/Downloads/mariadb-connector-c-3.4.1-centos74-amd64"/>
 	<classpathentry kind="lib" path="/home/gabriel/Downloads/mariadb-java-client-3.4.1.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/gson-2.11.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

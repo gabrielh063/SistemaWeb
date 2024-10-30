@@ -36,9 +36,8 @@
                     <td><%= c.getCep() %></td>
                     <td><%= c.getPopulacao() %></td>
                     <td>
-						<a href='formulario.jsp?id=<%= c.getIdCidade() %>' class='btn btn-info btn-sm'>Alterar</a>
-                        <a href='excluir.jsp?id=<%= c.getIdCidade() %>' class='btn btn-secondary btn-sm'>Excluir</a>
-                    </td>
+						<a href='formulario.jsp?idCidade=<%= c.getIdCidade() %>' class='btn btn-info btn-sm'>Alterar</a>
+                        <a href='excluir.jsp?idCidade=<%= c.getIdCidade() %>' class='btn btn-secondary btn-sm'>Excluir</a>
                     </td>
                 </tr>
             <% 

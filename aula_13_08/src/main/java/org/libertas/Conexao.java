@@ -10,7 +10,7 @@ public class Conexao {
 		try {
 //			cria conexao com o banco de dados
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/cidade", "root", "root");
+			connection = DriverManager.getConnection("jdbc:mysql://54.91.193.137:3306/" + "libertas5per?verifyServerCertificate=false&useSSL=false", "libertas", "123456");
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
