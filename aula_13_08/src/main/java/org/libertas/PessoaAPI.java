@@ -62,9 +62,12 @@ public class PessoaAPI extends HttpServlet {
 		Pessoa p = gson.fromJson(body, Pessoa.class);
 		// salvar nova pessoa	
 		PessoaDAO pdao = new PessoaDAO();
-		pdao.inserir(p);
+		Retorno r = new Retorno();
 		// envia resposta
-		String resposta = "inserindo..";
+		r.setSucesso(pdao.inserir(p));
+		r.Mensagem(r);
+		String resposta = gson.toJson(r);
+		response.setHeader("content-type", "application/json");
 		response.getWriter().print(resposta);
 	}
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -80,10 +83,14 @@ public class PessoaAPI extends HttpServlet {
 		} catch (Exception e){
 		}
 		// salvar nova pessoa	
+		Retorno r = new Retorno();
 		PessoaDAO pdao = new PessoaDAO();
-		pdao.alterar(p);
 		// envia resposta
-		String resposta = "inserindo..";
+		p.setIdPessoa(id);
+		r.setSucesso(pdao.alterar(p));
+		r.Mensagem(r);
+		String resposta = gson.toJson(r);
+		response.setHeader("content-type", "application/json");
 		response.getWriter().print(resposta);
 	}
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

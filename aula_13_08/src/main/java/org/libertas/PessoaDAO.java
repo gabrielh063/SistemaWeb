@@ -44,24 +44,36 @@ public class PessoaDAO {
 		}
 	}
 	
-	public void alterar(Pessoa p) {
+	public boolean alterar(Pessoa p) {
 		Conexao conn = new Conexao();
 		try {
-			String sql = "UPDATE pessoa SET" + "nome = ?, telefone = ?, " + " email = ?, cidade = ?, endereco = ?, cep = ? " + "WHERE idPessoa = ?";
+			String sql1 = "SELECT * FROM pessoa WHERE idPessoa = ?";
+			PreparedStatement prep1 = conn.getConnection().prepareStatement(sql1);
+			prep1.setInt(1, p.getIdPessoa());
+			ResultSet res = prep1.executeQuery();
+			if (res.next() == false ) {
+				conn.desconecta();
+				return false;
+			}
+			
+			String sql = "UPDATE pessoa SET nome = ?, telefone = ?, email = ?, cidade = ?, endereco = ?, cep = ? WHERE idPessoa = ?";
 			PreparedStatement prep = conn.getConnection().prepareStatement(sql);
 			prep.setString(1, p.getNome());
 			prep.setString(2, p.getTelefone());
 			prep.setString(3, p.getEmail());
 			prep.setString(4, p.getCidade());
-			prep.setInt(5, p.getIdPessoa());
-			prep.setString(6, p.getEndereco());
-			prep.setString(7, p.getCep());
+			prep.setString(5, p.getEndereco());
+			prep.setString(6, p.getCep());
+			prep.setInt(7, p.getIdPessoa());
 			prep.execute();
+			
+			return true;
 			} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 		conn.desconecta();
+		return false;
 	}
 	
 	public boolean excluir(Pessoa p){
