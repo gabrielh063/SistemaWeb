@@ -87,8 +87,6 @@ public class PessoaDAO {
 					conn.desconecta();
 					return false;
 				}
-				
-				
 				String sql1 = "DELETE FROM pessoa WHERE idPessoa = ?";
 				PreparedStatement prep1 = conn.getConnection().prepareStatement(sql1);
 				prep1.setInt(1, p.getIdPessoa());
@@ -103,13 +101,14 @@ public class PessoaDAO {
 		return false;
 	}
 		
-	public LinkedList<Pessoa> listar() {
+	public LinkedList<Pessoa> listar(String pesquisa) {
 		LinkedList<Pessoa> lista = new LinkedList<Pessoa>();
 		Conexao conn = new Conexao();
 		try {
-			String sql = "SELECT * FROM pessoa";
-			Statement sta = conn.getConnection().createStatement();
-			ResultSet res = sta.executeQuery(sql);
+			String sql = "SELECT * FROM pessoa WHERE nome like ? ORDER BY nome";
+			PreparedStatement sta = conn.getConnection().prepareStatement(sql);
+			sta.setString(1, "%" + pesquisa + "%");
+			ResultSet res = sta.executeQuery();
 			while (res.next()) {
 				Pessoa p = new Pessoa();
 				p.setIdPessoa(res.getInt("idPessoa"));

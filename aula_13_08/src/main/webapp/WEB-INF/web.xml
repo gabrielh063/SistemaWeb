@@ -19,4 +19,14 @@
     <servlet-name>PessoaAPI</servlet-name>
     <url-pattern>/PessoaAPI/*</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EsporteAPI</display-name>
+    <servlet-name>EsporteAPI</servlet-name>
+    <servlet-class>org.libertas.EsporteAPI</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EsporteAPI</servlet-name>
+    <url-pattern>/EsporteAPI</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -6,114 +6,112 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
 
 /**
- * Servlet implementation class PessoaAPI
+ * Servlet implementation class EsporteAPI
  */
-//@WebServlet("/PessoaAPI/*")
-public class PessoaAPI extends HttpServlet {
+@WebServlet("/EsporteAPI/*")
+public class EsporteAPI extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public PessoaAPI() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public EsporteAPI() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		PessoaDAO pdao = new PessoaDAO();
+		EsporteDAO edao = new EsporteDAO();
 		Gson gson = new Gson();
 		int id = 0;
 		try {
 			id = Integer.parseInt(request.getPathInfo().substring(1));
-		} catch (Exception e){
+		} catch (Exception e) {
 		}
 		String body = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 	
 		String pesquisa = request.getParameter("pesquisa");
 
 		String resposta;
-		if (id==0) {
-//			listar todos
-			resposta = gson.toJson(pdao.listar(pesquisa));
-		}else {
-//			listar apenas 1
-			resposta = gson.toJson(pdao.consultar(id));
-		// TODO Auto-generated method stub1
+		if (id == 0) {
+			// listar todos os esportes
+			resposta = gson.toJson(edao.listar(pesquisa));
+		} else {
+			// listar apenas 1 esporte
+			resposta = gson.toJson(edao.consultar(id));
 		}
 		response.setHeader("content-type", "application/json");
 		response.getWriter().print(resposta);
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		// pega o body da requisicao
 		String body = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 		// converte o body para um objeto java
 		Gson gson = new Gson();
-		Pessoa p = gson.fromJson(body, Pessoa.class);
-		// salvar nova pessoa	
-		PessoaDAO pdao = new PessoaDAO();
+		Esporte e = gson.fromJson(body, Esporte.class);
+		// salvar novo esporte	
+		EsporteDAO edao = new EsporteDAO();
 		Retorno r = new Retorno();
 		
 		// envia resposta
-		r.setSucesso(pdao.inserir(p));
+		r.setSucesso(edao.inserir(e));
 		r.Mensagem(r);
 		String resposta = gson.toJson(r);
 		response.setHeader("content-type", "application/json");
 		response.getWriter().print(resposta);
 	}
+
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		// pega o body da requisicao
 		String body = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 		// converte o body para um objeto java			
 		Gson gson = new Gson();
-		Pessoa p = gson.fromJson(body, Pessoa.class);
+		Esporte e = gson.fromJson(body, Esporte.class);
 		int id = 0;
 		try {
 			id = Integer.parseInt(request.getPathInfo().substring(1));
-		} catch (Exception e){
+		} catch (Exception e) {
 		}
-		// salvar nova pessoa	
+		// alterar um esporte	
 		Retorno r = new Retorno();
-		PessoaDAO pdao = new PessoaDAO();
+		EsporteDAO edao = new EsporteDAO();
 		// envia resposta
-		p.setIdPessoa(id);
-		r.setSucesso(pdao.alterar(p));
+		e.setIdEsporte(id);
+		r.setSucesso(edao.alterar(e));
 		r.Mensagem(r);
 		String resposta = gson.toJson(r);
 		response.setHeader("content-type", "application/json");
 		response.getWriter().print(resposta);
 	}
+
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int id = 0;
 		try {
 			id = Integer.parseInt(request.getPathInfo().substring(1));
-		} catch (Exception e){
+		} catch (Exception e) {
 			
 		}
 		String body = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 		Gson gson = new Gson();
 		Retorno r = new Retorno();
-		PessoaDAO pdao = new PessoaDAO();
-		Pessoa p = new Pessoa();
+		EsporteDAO edao = new EsporteDAO();
+		Esporte e = new Esporte();
 
-		p.setIdPessoa(id);
-		r.setSucesso(pdao.excluir(p));
+		e.setIdEsporte(id);
+		r.setSucesso(edao.excluir(e));
 		r.Mensagem(r);
 		String resposta = gson.toJson(r);
 		response.setHeader("content-type", "application/json");
