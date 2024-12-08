@@ -20,12 +20,12 @@ public class EsporteDAO {
 		ConexaoEsporte conn = new ConexaoEsporte();
 		
 		try {
-			String sql = "INSERT INTO esporte (nome, categoria, numeroJogadores, popularidade, regras)" 
+			String sql = "INSERT INTO esporte (nome, categoria, numero_de_jogadores, popularidade, regras)" 
 					+ " VALUES (?, ?, ?, ?, ?)";
 			PreparedStatement prep = conn.getConnection().prepareStatement(sql);
 			prep.setString(1, e.getNome());
 			prep.setString(2, e.getCategoria());
-			prep.setInt(3, e.getNumeroJogadores());
+			prep.setString(3, e.getnumero_de_jogadores());
 			prep.setString(4, e.getPopularidade());
 			prep.setString(5, e.getRegras());
 			prep.execute();
@@ -50,11 +50,11 @@ public class EsporteDAO {
 				return false;
 			}
 			
-			String sql = "UPDATE esporte SET nome = ?, categoria = ?, numeroJogadores = ?, popularidade = ?, regras = ? WHERE idEsporte = ?";
+			String sql = "UPDATE esporte SET nome = ?, categoria = ?, numero_de_jogadores = ?, popularidade = ?, regras = ? WHERE idEsporte = ?";
 			PreparedStatement prep = conn.getConnection().prepareStatement(sql);
 			prep.setString(1, e.getNome());
 			prep.setString(2, e.getCategoria());
-			prep.setInt(3, e.getNumeroJogadores());
+			prep.setString(3, e.getnumero_de_jogadores());
 			prep.setString(4, e.getPopularidade());
 			prep.setString(5, e.getRegras());
 			prep.setInt(6, e.getIdEsporte());
@@ -106,7 +106,7 @@ public class EsporteDAO {
 				e.setIdEsporte(res.getInt("idEsporte"));
 				e.setNome(res.getString("nome"));
 				e.setCategoria(res.getString("categoria"));
-				e.setNumeroJogadores(res.getInt("numeroJogadores"));
+				e.setnumero_de_jogadores(res.getString("numero_de_jogadores"));
 				e.setPopularidade(res.getString("popularidade"));
 				e.setRegras(res.getString("regras"));
 				lista.add(e);
@@ -129,7 +129,7 @@ public class EsporteDAO {
 				e.setIdEsporte(res.getInt("idEsporte"));
 				e.setNome(res.getString("nome"));
 				e.setCategoria(res.getString("categoria"));
-				e.setNumeroJogadores(res.getInt("numeroJogadores"));
+				e.setnumero_de_jogadores(res.getString("numero_de_jogadores"));
 				e.setPopularidade(res.getString("popularidade"));
 				e.setRegras(res.getString("regras"));
 			}

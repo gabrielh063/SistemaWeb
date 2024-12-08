@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 /**
  * Servlet implementation class EsporteAPI
  */
-@WebServlet("/EsporteAPI/*")
+//@WebServlet("/EsporteAPI/*")
 public class EsporteAPI extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -82,7 +82,8 @@ public class EsporteAPI extends HttpServlet {
 		int id = 0;
 		try {
 			id = Integer.parseInt(request.getPathInfo().substring(1));
-		} catch (Exception e) {
+		} catch (Exception exception) {
+			
 		}
 		// alterar um esporte	
 		Retorno r = new Retorno();

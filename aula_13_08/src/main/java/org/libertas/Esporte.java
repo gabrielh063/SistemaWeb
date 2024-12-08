@@ -4,7 +4,7 @@ public class Esporte {
 	private int idEsporte;
 	private String nome;
 	private String categoria;
-	private int numeroJogadores;
+	private String  numero_de_jogadores;
 	private String popularidade;
 	private String regras;
 
@@ -26,11 +26,11 @@ public class Esporte {
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
-	public int getNumeroJogadores() {
-		return numeroJogadores;
+	public String getnumero_de_jogadores() {
+		return numero_de_jogadores;
 	}
-	public void setNumeroJogadores(int numeroJogadores) {
-		this.numeroJogadores = numeroJogadores;
+	public void setnumero_de_jogadores(String numero_de_jogadores) {
+		this.numero_de_jogadores = numero_de_jogadores;
 	}
 	public String getPopularidade() {
 		return popularidade;
@@ -39,7 +39,7 @@ public class Esporte {
 		this.popularidade = popularidade;
 	}
 	public String getRegras() {
-		return regras;
+		return regras; 
 	}
 	public void setRegras(String regras) {
 		this.regras = regras;
